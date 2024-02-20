@@ -13,7 +13,7 @@ from ChessBoard import ChessBoard
 maxchess = ChessBoard()
 
 if __name__ == '__main__':
-    ser = serial.Serial('/dev/ttyAMA0', 9600, timeout=1)   # for Pi Zero use '/dev/ttyAMA0' and for others use '/dev/ttyUSB0'.
+    ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)   # for Pi Zero use '/dev/ttyAMA0' and for others use '/dev/ttyUSB0'.
     ser.flush()
 
 # initiate stockfish chess engine
