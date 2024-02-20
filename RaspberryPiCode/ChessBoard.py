@@ -85,7 +85,7 @@ class ChessBoard:
     _promotion_value = 0
     
     def __init__(self):
-        self.resetBoard()
+        self.reset_board()
 
     def state2str(self):
 
