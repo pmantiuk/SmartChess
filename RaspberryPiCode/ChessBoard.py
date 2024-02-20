@@ -85,7 +85,7 @@ class ChessBoard:
     _promotion_value = 0
     
     def __init__(self):
-        self.reset_board()
+        self.resetBoard()
 
     def state2str(self):
 
@@ -109,7 +109,7 @@ class ChessBoard:
                             
         return s
             
-    def loadCurState(self):
+    def load_cur_state(self):
         s = self._state_stack[self._state_stack_pointer-1]
         b= s[:64]
         v = s[64:72]
@@ -132,7 +132,7 @@ class ChessBoard:
         
         self._fifty = f
                         
-    def pushState(self):
+    def push_state(self):
         if self._state_stack_pointer != len(self._state_stack):
             self._state_stack = self._state_stack[:self._state_stack_pointer]
             self._three_rep_stack = self._three_rep_stack[:self._state_stack_pointer]
@@ -153,10 +153,10 @@ class ChessBoard:
 
         self._state_stack_pointer = len(self._state_stack)
 
-    def pushMove(self):
+    def push_move(self):
         self._moves.append(deepcopy(self._cur_move))
 
-    def threeRepetitions(self):
+    def three_repetitions(self):
         ts = self._three_rep_stack[:self._state_stack_pointer]
 
         if not len(ts):
@@ -167,7 +167,7 @@ class ChessBoard:
             return True
         return False
 
-    def updateKingLocations(self):
+    def update_king_locations(self):
         for y in range(0, 8):
             for x in range(0, 8):
                 if self._board[y][x] == "K":
@@ -182,10 +182,10 @@ class ChessBoard:
         self._ep[0] = 0
         self._ep[1] = 0
 
-    def endGame(self, reason):
+    def end_game(self, reason):
         self._game_result = reason
 
-    def checkKingGuard(self, fromPos, moves, specialMoves={}):
+    def check_king_guard(self, fromPos, moves, specialMoves={}):
         result = []
 
         if self._turn == self.WHITE:
@@ -511,7 +511,7 @@ class ChessBoard:
 
         return True
 
-    def moveKnight(self, fromPos, toPos):
+    def move_knight(self, fromPos, toPos):
         moves = self.getValidKnightMoves(fromPos)
 
         if toPos not in moves:
@@ -544,7 +544,7 @@ class ChessBoard:
         if to_pos not in moves:
             return False
 
-        self.clear_EP()
+        self.clearEP()
 
         if self._turn == self.WHITE:
             self._white_king_castle = False
@@ -592,7 +592,7 @@ class ChessBoard:
         if to_pos not in moves:
             return False
 
-        self.clear_EP()
+        self.clearEP()
 
         if self._board[to_pos[1]][to_pos[0]] == ".":
             self._fifty += 1
@@ -611,7 +611,7 @@ class ChessBoard:
         if to_pos not in moves:
             return False
 
-        self.clear_EP()
+        self.clearEP()
 
         if self._board[to_pos[1]][to_pos[0]] == ".":
             self._fifty += 1
@@ -642,7 +642,7 @@ class ChessBoard:
             if fx == 7:
                 self._black_king_castle = False
 
-        self.clear_EP()
+        self.clearEP()
 
         if self._board[to_pos[1]][to_pos[0]] == ".":
             self._fifty += 1
